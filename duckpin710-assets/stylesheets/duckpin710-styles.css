@@ -1,0 +1,54 @@
+/**** This is the stylesheet for Duckpin Design's 710 marketing program *****/
+
+
+/***** Blog Defaults *****/
+.duckpin710-blog-right{float:left; width:calc(100% - 100px);}
+.duckpin710-blog-left{width:100px; float:left; font-size:18px; text-align:center; font-weight:bold;}
+	.duckpin710-blog-left::first-line{font-size:14px;}
+	
+.duckpin710-blog hr{background-color:rgba(0,0,0,0.1);}
+	
+/***** Blog Custom *****/
+
+
+
+	
+/***** Social Defaults *****/
+.duckpin710-social{position:fixed; left:0; top:50%; transform:translateY(-50%); z-index:999;}
+	.duckpin710-social div a img{height:20px; width:20px; padding:10px 10px 5px;}
+	.duckpin710-social > div{transition:.3s ease;}
+		.duckpin710-social > div:hover{margin:5px 0;}
+	
+	.duckpin710-social .duckpin710-facebook{background-color:#3b5998;}
+		.duckpin710-social .duckpin710-facebook:hover{background-color:#5986E4;}
+	.duckpin710-social .duckpin710-twitter{background-color:#55acee;}
+		.duckpin710-social .duckpin710-twitter:hover{background-color:#7dbff2;}
+	.duckpin710-social .duckpin710-google{background-color:#dd4b39;}
+		.duckpin710-social .duckpin710-google:hover{background-color:#FF5742;}
+	.duckpin710-social .duckpin710-youtube{background-color:#bb0000;}
+		.duckpin710-social .duckpin710-youtube:hover{background-color:#DD0000;}
+	.duckpin710-social .duckpin710-linkedin{background-color:#007bb5;}
+		.duckpin710-social .duckpin710-linkedin:hover{background-color:#0092D7;}
+	.duckpin710-social .duckpin710-instagram{background-color:#125688;}
+		.duckpin710-social .duckpin710-instagram:hover{background-color:#166BAA;}
+	.duckpin710-social .duckpin710-pinterest{background-color:#cb2027;}
+		.duckpin710-social .duckpin710-pinterest:hover{background-color:#ED252E;}
+	.duckpin710-social .duckpin710-yelp{background-color:#c41200;}
+		.duckpin710-social .duckpin710-yelp:hover{background-color:#E61500;}
+		
+/***** Social Custom *****/
+
+
+
+
+/***** Newsletter Defaults *****/
+.duckpin710-newsletter h3{padding:0 0 16px; font-size:24px;}
+.duckpin710-newsletter form input{width:100%; max-width:300px; padding:10px; box-sizing:border-box; margin:0 20px 20px 0; font-size:16px; display:inline-block;}
+.duckpin710-newsletter form button{font-weight:800; border:none; padding:16px 23px; display:inline-block;}
+
+.duckpin710-newsletter .duckpin710-success-msg{display:none;}
+
+/***** Newsletter Custom *****/
+
+
+
