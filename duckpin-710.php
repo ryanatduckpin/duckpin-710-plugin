@@ -163,6 +163,5 @@ add_shortcode('duckpin710_pop', 'duckpin710_pop');
 add_shortcode('duckpin710_blog', 'duckpin710_blog');
 add_shortcode('duckpin710_social', 'duckpin710_social');
 add_shortcode('duckpin710_newsletter', 'duckpin710_newsletter');
-
 	
 ?>
