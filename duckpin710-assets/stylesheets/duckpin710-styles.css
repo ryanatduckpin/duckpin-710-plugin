@@ -43,7 +43,7 @@
 /***** Newsletter Custom *****/
 	
 /***** Lead Popup Defaults *****/
-.duckpin710-pop-contain{position:fixed; top:0; bottom:0; left:0; right:0; background-color:rgba(0,0,0,.5); z-index:2; display:block; }
+.duckpin710-pop-contain{position:fixed; top:0; bottom:0; left:0; right:0; background-color:rgba(0,0,0,.5); z-index:2; display:none; }
 	.duckpin710-pop{position:absolute; width:90%; max-width:600px; top:50%; left:50%; transform:translate(-50%,-50%); box-sizing:border-box;}
 	
 	.duckpin710-pop img{display:block; width:100%;}
