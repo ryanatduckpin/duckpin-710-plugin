@@ -86,13 +86,18 @@ function duckpin710_social(){
 
 }
 
+//FOR NEWSLETTER AND POPUP MAILCHIMP SEND URL:
+$duckpin710_mailchimp_form_send = '';
+
 function duckpin710_newsletter($title){
-	?>
+	if($GLOBALS['duckpin710_mailchimp_form_send'] == ''){ echo 'Mailchimp Not Set Up'; } else { ?>
+
 <div class="duckpin710-newsletter">
 	<?php 
 		extract(shortcode_atts(array('title' => 'Newsletter Signup'),$title));
 		
 		$duckpin710_sitekey = "";
+		
 		if($duckpin710_sitekey){
 			$duckpin710_recaptcha_submit_info = ' class="g-recaptcha" data-sitekey="' . $duckpin710_sitekey . '" data-callback="submitDuckpin710NewsletterForm" data-badge="inline"';
 	?>
@@ -104,33 +109,57 @@ function duckpin710_newsletter($title){
   <?php } ?>
   
 	<h3><?php echo $title ?></h3>
-	<form id="duckpin710-newsletter-form">
-		<input id="duckpin-newsletter-name" type="text" name="duckpin710-name" placeholder="Name*">
-		<input id="duckpin-newsletter-email" type="text" name="duckpin710-email" placeholder="Email*">
-		<button type="submit"<?php echo $duckpin710_recaptcha_submit_info; ?>>Submit</button>
+	
+	<form action="<?php echo $GLOBALS['duckpin710_mailchimp_form_send']; ?>" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+		<input id="duckpin-newsletter-email" type="text" name="duckpin710-email" placeholder="Email*" required>
+		<button type="submit"<?php echo $duckpin710_recaptcha_submit_info; ?>  onclick="ga('send', 'event', 'Goals', 'click', 'Newsletter Signup Success');">Submit</button>
 		<input type="hidden" name="duckpin710-form" value="newsletter">
 	</form>
-	<div class="duckpin710-general-error"></div>
-	<div class="duckpin710-success-msg">Form Sent Successfully!</div>
+
 </div>
 <?
-
+	
+	}
 }
 
-function duckpin710_popup(){
+function duckpin710_pop(){
+	if($GLOBALS['duckpin710_mailchimp_form_send'] == ''){ echo 'Mailchimp Not Set Up'; } else {
+	
+	//desktop
+	$duckpin710_pop_signup_text = 'Sign me up!';
+	$duckpin710_pop_exit_text = 'No Thanks';
+	
+	//mobile
+	$duckpin710_pop_signup_text_m = 'Sign me up!';
+	$duckpin710_pop_exit_text_m = 'No Thanks';
+	$duckpin710_mobile_message = "Sign Up Today!";
 	?>
 	
-<div class="duckpin710-pop-contain">	
+<div class="duckpin710-pop-contain">		
 	<div class="duckpin710-pop">
 		
-	  
-  </div>	
+		<img src="<?php echo get_template_directory_uri();?>/duckpin710-assets/images/duckpin710-pop-top.jpg">
+		
+		<div class="duckpin710-pop-bot">
+			
+			<div class="duckpin710-mobile-message"><?php echo $duckpin710_mobile_message; ?></div>
+			<form action="<?php echo $GLOBALS['duckpin710_mailchimp_form_send']; ?>" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+				<input type="email" value="" name="EMAIL" placeholder="Enter your email address" required>
+				<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_862dad62be9282dc44fd9b07a_eecfe5832e" tabindex="-1" value=""></div>
+				<button type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" onclick="ga('send', 'event', 'Goals', 'click', 'Lead Cert Form Sent Successfully');" data-mobile="<?php echo $duckpin710_pop_signup_text_m; ?>" data-desktop="<?php echo $duckpin710_pop_signup_text; ?>"><?php echo $duckpin710_pop_signup_text; ?></button>
+			</form>
+			<a class="close-lead" href="" data-mobile="<?php echo $duckpin710_pop_exit_text_m; ?>" data-desktop="<?php echo $duckpin710_pop_exit_text; ?>"><?php echo $duckpin710_pop_exit_text_m; ?></a>
+		
+		</div>
+	
+	</div>
 </div>
 	
 <?php	
+	}
 }
 
-add_shortcode('duckpin710_popup', 'duckpin710_popup');
+add_shortcode('duckpin710_pop', 'duckpin710_pop');
 add_shortcode('duckpin710_blog', 'duckpin710_blog');
 add_shortcode('duckpin710_social', 'duckpin710_social');
 add_shortcode('duckpin710_newsletter', 'duckpin710_newsletter');
