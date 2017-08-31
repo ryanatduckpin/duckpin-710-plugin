@@ -1,53 +1,41 @@
 // Jquery here
 $(document).ready(function(){
-	var sendToEmail = "info@towsoneconomyautorental.com";
 	
-//process 710 Newsletter form
-  $('.duckpin710-newsletter form').on('submit',function(e){
-    e.preventDefault();
-    $form = $(this);
-    console.log('form working');
-    
-    //clear out errors
-    var errors= 0;
-    $('input,textarea').removeClass('invalid');
-    
-    $validateNames = ['name','email'];
-    
-    for(var i = 0; i > validateNames.length(); i++){
-	    if($('input[name="' + validateNames[i] + '"]').val()==''){
-      	errors++;
-    	} 
-    }
-    
-    if(errors==0){
-      var data = $form.serialize();
-      $.ajax({
-        method: "POST",
-        url: "../../duckpin710-processors/process-forms.php",
-        data: data,
-      }).done(function(msg){
-        if(msg=="empty"){
-          $('.duckpin710-general-error').html('Please fill the name and email fields.').fadeIn('slow');
-          ga('send', 'event', 'Almost Goals', 'click', 'Newsletter Signup Error');
-        }else if(msg=="sendfail"){
-          $('.duckpin710-general-error').html('Error sending message. Please send an email to ' + sendToEmail).fadeIn('slow');
-          ga('send', 'event', 'Almost Goals', 'click', 'Newsletter Signup Error');
-        }else{
-	        	ga('send', 'event', 'Goals', 'click', 'Newsletter Signup Success');
-            $form.fadeOut('slow',function(){
-            $('.duckpin710-success-msg').fadeIn('slow');
-          });
-        }
-      }).fail(function(msg){
-        $('.duckpin710-general-error').html('Oops! Something has gone wrong. Please send an email to ' + sendToEmail).fadeIn('slow');
-        ga('send', 'event', 'Almost Goals', 'click', 'Newsletter Signup Error');
-      });
-    }else{
-      $('.duckpin710-general-error').html('Please fill the name and email fields.').fadeIn('slow');
-      ga('send', 'event', 'Almost Goals', 'click', 'Newsletter Signup Error');
-    }
-    
-  });
+	//Lead Cert Pop Func
+  $('.duckpin710-pop-contain .close-lead').on('click', function(e){
+		e.preventDefault();
+		$('.duckpin710-pop-contain').fadeOut('slow');
+	});
+	$('.duckpin710-pop-contain form').on('submit', function(){
+		$('.duckpin710-pop-contain').fadeOut('slow');
+	});
+	
+	function duckpin710_resize_text(){
+		var mobileSignupText = $('.duckpin710-pop-bot form button').attr('data-mobile');
+		var mobileExitText = $('.duckpin710-pop-bot a.close-lead').attr('data-mobile');
+		var desktopSignupText = $('.duckpin710-pop-bot form button').attr('data-desktop');
+		var desktopExitText = $('.duckpin710-pop-bot a.close-lead').attr('data-desktop');
+		
+		if($('body').width() >= 599){
+			$('.duckpin710-pop-bot form button').html(desktopSignupText);
+			$('.duckpin710-pop-bot a.close-lead').html(desktopExitText);
+		} else {
+			$('.duckpin710-pop-bot form button').html(mobileSignupText);
+			$('.duckpin710-pop-bot a.close-lead').html(mobileExitText);
+		}	
+	}
+	
+	duckpin710_resize_text();
+	
+	$(window).resize(duckpin710_resize_text);
+	
+	var duckpin710_dismiss = Cookies.get('duckpin710_dismiss');
+  if(!duckpin710_dismiss || duckpin710_dismiss == '' || duckpin710_dismiss == 'undefined' || duckpin710_dismiss == null){ //does not exist
+		//there is no dismissed cookie found, so show a lead cert
+	  Cookies.set('duckpin710_dismiss', 'true', {expires:1});
+	  console.log('cookie should be enabled');
+	  //set lead container to display block
+	  $('.duckpin710-pop-contain').css('display', 'block');
+  }
 	
 });
