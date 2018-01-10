@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Duckpin 710 Marketing Shortcodes
-Plugin URI: http://www.duckpindesign.com
+Plugin URI: https://github.com/ryanatduckpin/duckpin-710-plugin
 Description: The 710 Digital Marketing Shortcode WP Plugin
 Version: 0.1
 */
